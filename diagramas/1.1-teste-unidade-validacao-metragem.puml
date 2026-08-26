@@ -1,0 +1,17 @@
+@startuml 1.1-teste-unidade-validacao-metragem
+
+class ValidadorMetragem {
+    - padraoMetragem : String
+    + validarTexto(texto : String) : ResultadoValidacao
+    - extrairMetragem(texto : String) : Integer
+}
+
+class ResultadoValidacao {
+    - aprovado : Boolean
+    - metragemIdentificada : Integer
+    - mensagem : String
+}
+
+ValidadorMetragem ..> ResultadoValidacao : retorna
+
+@enduml
