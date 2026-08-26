@@ -9,3 +9,9 @@ A arquitetura considerada utiliza um **aplicativo para envio das fotografias**, 
 Ao final da análise, a fotografia é classificada como **aprovada**, quando a metragem é identificada corretamente, ou **reprovada**, quando não é possível confirmar a metragem da evidência.
 
 Os cenários apresentados neste laboratório representam um **sistema conceitual em desenvolvimento**, utilizado exclusivamente para modelar e demonstrar as diferentes estratégias e níveis de teste solicitados na atividade.
+
+---
+
+## 1. Teste de Unidade
+
+### 1.1 Verificação de lógica atômica em componente/classe isolada
