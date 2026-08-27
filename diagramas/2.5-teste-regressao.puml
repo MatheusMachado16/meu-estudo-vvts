@@ -1,0 +1,21 @@
+@startuml 2.5-teste-regressao
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+
+class ResultadoValidacao
+
+class ValidadorMetragem {
+    + validarTexto(texto: String): ResultadoValidacao
+}
+
+class ValidadorMetragemRegressaoSuite <<Test>> {
+    + testarMetragemInteiraExistente(): void
+    + testarOutraMetragemInteiraExistente(): void
+    + testarMetragemDecimalNova(): void
+    + testarTextoSemMetragem(): void
+}
+
+ValidadorMetragemRegressaoSuite ..> ValidadorMetragem : testa >
+ValidadorMetragem ..> ResultadoValidacao : retorna >
+
+@enduml

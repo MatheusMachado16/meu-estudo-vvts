@@ -1,0 +1,15 @@
+@startuml 2.1-teste-integracao-big-bang
+left to right direction
+skinparam componentStyle uml2
+skinparam monochrome true
+
+component "InterfaceTecnico" as interface
+component "ServicoOCR" as ocr
+component "ValidadorMetragem" as validador
+component "RepositorioEvidencias" as repo
+
+interface --> ocr : "envia foto para extração"
+ocr --> validador : "repassa texto extraído"
+validador --> repo : "envia resultado da validação"
+
+@enduml

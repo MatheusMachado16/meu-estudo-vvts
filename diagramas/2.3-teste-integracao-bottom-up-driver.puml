@@ -1,0 +1,22 @@
+@startuml 2.3-teste-integracao-bottom-up-driver
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+class ResultadoValidacao
+class ServicoOCR {
+    + extrairTexto(foto: String): String
+}
+class ValidadorMetragem {
+    + validarTexto(textoExtraido: String): ResultadoValidacao
+}
+class ValidadorMetragemDriver <<Driver (Simulador)>> {
+    + executarCenarioDeTeste(foto: String): void
+}
+note top of ValidadorMetragemDriver
+  Artefato de teste que simula temporariamente
+  o módulo de alto nível para acionar os
+  componentes de baixo nível.
+end note
+ValidadorMetragemDriver --> ServicoOCR : utiliza >
+ValidadorMetragemDriver --> ValidadorMetragem : utiliza >
+ValidadorMetragemDriver ..> ResultadoValidacao : avalia >
+@enduml

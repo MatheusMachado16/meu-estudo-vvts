@@ -1,0 +1,28 @@
+@startuml 2.4-teste-integracao-smoke-test
+actor Tecnico
+participant "InterfaceTecnico" as IT
+participant "ServicoOCR" as OCR
+participant "ValidadorMetragem" as VM
+participant "RepositorioEvidencias" as RE
+note over Tecnico, RE
+Smoke Test: verificação superficial e rápida
+do caminho crítico do sistema após um novo deploy.
+end note
+Tecnico -> IT : Enviar fotografia de teste ("1493 m")
+activate IT
+IT -> OCR : Repassar fotografia
+activate OCR
+OCR -> OCR : Extrair texto da imagem
+OCR --> IT : Retornar texto extraído ("1493 m")
+deactivate OCR
+IT -> VM : Validar metragem ("1493 m")
+activate VM
+VM --> IT : Retornar resultado (Aprovado)
+deactivate VM
+IT -> RE : Enviar resultado para persistência
+activate RE
+RE --> IT : Confirmar armazenamento
+deactivate RE
+IT -> Tecnico : Exibir "Foto aprovada"
+deactivate IT
+@enduml

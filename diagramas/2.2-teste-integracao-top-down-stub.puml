@@ -1,0 +1,39 @@
+@startuml 2.2-teste-integracao-top-down-stub
+
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+
+class ResultadoValidacao
+
+class ServicoProcessamentoEvidencia {
+    + processarEvidencia(foto: String): ResultadoValidacao
+}
+
+class ServicoOCR {
+    + extrairTexto(foto: String): String
+}
+
+class ValidadorMetragem {
+    + validarTexto(textoExtraido: String): ResultadoValidacao
+}
+
+interface IRepositorioEvidencias {
+    + salvar(resultado: ResultadoValidacao): Boolean
+}
+
+class RepositorioEvidenciasStub <<Stub (Simulador)>> {
+    - armazenamentoEmMemoria: List<ResultadoValidacao>
+    - simularFalha: Boolean
+    + salvar(resultado: ResultadoValidacao): Boolean
+    + configurarFalhaPersistencia(falhar: Boolean): void
+}
+
+ServicoProcessamentoEvidencia --> ServicoOCR : utiliza
+ServicoProcessamentoEvidencia --> ValidadorMetragem : utiliza
+ServicoProcessamentoEvidencia --> IRepositorioEvidencias : utiliza
+
+IRepositorioEvidencias <|.. RepositorioEvidenciasStub : implementa
+
+ServicoProcessamentoEvidencia ..> ResultadoValidacao : retorna
+
+@enduml
