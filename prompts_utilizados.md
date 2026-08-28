@@ -6,11 +6,9 @@ Este arquivo documenta os prompts utilizados com assistentes de IA generativa du
 
 ## 1.1 — Verificação de lógica atômica em componente/classe isolada
 
-### Prompt inicial
-
 **Ferramenta**: Claude (Anthropic)
 **Objetivo**: Gerar o diagrama de classes inicial para o teste de unidade da classe `ValidadorMetragem`.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -33,11 +31,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 2.1 — Integração Não Incremental (Big Bang)
 
-### Prompt inicial
-
 **Ferramenta**: Gemini (Google)
 **Objetivo**: Gerar o diagrama de componentes para a integração Big Bang do fluxo de validação de evidências fotográficas.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -58,11 +54,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 2.2 — Integração Incremental Top-Down (Descendente) com uso de Stubs
 
-### Prompt inicial
-
 **Ferramenta**: Gemini (Google)
 **Objetivo**: Gerar o diagrama de classes representando a integração Top-Down de `ServicoProcessamentoEvidencia`, com `ServicoOCR` e `ValidadorMetragem` já reais e `RepositorioEvidencias` substituído por um Stub.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -85,11 +79,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 2.3 — Integração Incremental Bottom-Up (Ascendente) com uso de Drivers
 
-### Prompt inicial
-
 **Ferramenta**: Gemini (Google)
 **Objetivo**: Gerar o diagrama de classes representando a integração Bottom-Up entre `ServicoOCR` e `ValidadorMetragem`, com o módulo controlador `ServicoProcessamentoEvidencia` ainda inexistente e substituído por um Driver.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -111,11 +103,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 2.4 — Teste de Fumaça (Smoke Testing)
 
-### Prompt inicial
-
 **Ferramenta**: Claude (Anthropic)
 **Objetivo**: Gerar o diagrama de sequência representando o fluxo crítico do sistema sendo verificado logo após um deploy.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -135,11 +125,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 2.5 — Teste de Regressão
 
-### Prompt inicial
-
 **Ferramenta**: Gemini (Google)
 **Objetivo**: Gerar o diagrama de classes representando a suíte de regressão reexecutando casos existentes e novos sobre `ValidadorMetragem` após uma alteração.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -159,11 +147,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 3.1 — Critérios de Aceitação (User Acceptance Testing)
 
-### Prompt inicial
-
 **Ferramenta**: Gemini (Google)
 **Objetivo**: Gerar o diagrama de sequência representando o Supervisor de Campo validando o critério de aceitação da evidência fotográfica, sob a perspectiva do usuário de negócio.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -186,11 +172,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 3.2 — Teste Alfa (Alpha Testing)
 
-### Prompt inicial
-
 **Ferramenta**: Gemini (Google)
 **Objetivo**: Gerar o diagrama de sequência representando a equipe interna de QA testando múltiplos cenários sobre o sistema, de forma exploratória, em ambiente controlado.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -210,11 +194,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 3.3 — Teste Beta (Beta Testing)
 
-### Prompt inicial
-
 **Ferramenta**: Claude (Anthropic)
 **Objetivo**: Gerar o diagrama de sequência representando um técnico real usando o sistema em campo e reportando feedback, sem cenários pré-definidos.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -235,11 +217,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 4.1 — Teste de Recuperação (Recovery Testing)
 
-### Prompt inicial
-
 **Ferramenta**: Claude (Anthropic)
 **Objetivo**: Gerar o diagrama de sequência representando a falha temporária do `RepositorioEvidencias` e a recuperação do sistema por meio de reenvio, sem perda do resultado.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -260,11 +240,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 4.2 — Teste de Segurança (Security Testing)
 
-### Prompt inicial
-
 **Ferramenta**: Claude (Anthropic)
 **Objetivo**: Gerar o diagrama de sequência representando a tentativa de acesso não autorizado sendo bloqueada pelo `ServicoAutenticacao`, antes de alcançar os dados protegidos.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -285,11 +263,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 4.3 — Teste de Estresse (Stress Testing)
 
-### Prompt inicial
-
 **Ferramenta**: Gemini (Google)
 **Objetivo**: Gerar o diagrama de sequência representando um pico de requisições realista (fechamento diário de medições/LPU) sobrecarregando o `SistemaValidacaoEvidencia`.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
@@ -310,11 +286,9 @@ Formate a resposta somente como um bloco de código PlantUML, sem explicações 
 
 ## 4.4 — Teste de Desempenho (Performance Testing)
 
-### Prompt inicial
-
 **Ferramenta**: Gemini (Google)
 **Objetivo**: Gerar o diagrama de sequência representando a medição do tempo de resposta do sistema sob condições normais de uso, comparando com um requisito de desempenho definido.
-
+### Prompt
 ```text
 Atue como um engenheiro de software e engenheiro de testes sênior.
 Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
