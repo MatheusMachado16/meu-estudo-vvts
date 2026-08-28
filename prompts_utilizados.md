@@ -29,10 +29,6 @@ Utilize nomes de classes, métodos e atributos em português e mantenha o diagra
 Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
 ```
 
-**Refinamentos aplicados após avaliação crítica**:
-- Correção de tipos: `metragemIdentificada` alterado de `Double` para `Integer`, já que as metragens do domínio (500, 850, 1493, 2000) são sempre valores inteiros.
-- Decisão de **não incluir** a classe.
-
 ---
 
 ## 2.1 — Integração Não Incremental (Big Bang)
@@ -57,10 +53,6 @@ Não detalhe atributos ou métodos internos de cada componente; o foco é a estr
 Utilize nomes de componentes em português e mantenha o diagrama simples e coerente com a proposta de integração não incremental.
 Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
 ```
-
-**Refinamentos aplicados após avaliação crítica**:
-- Ajuste do rótulo da última seta, de `"persiste resultado da validação"` para `"envia resultado da validação"`, reforçando que a responsabilidade de persistência é exclusiva do `RepositorioEvidencias`, e não do `ValidadorMetragem`.
-- Renomeação do componente `AplicativoCaptura` para `InterfaceTecnico`, evitando pressupor uma decisão de implementação (aplicativo mobile) ainda não definida no projeto, e mantendo o padrão de nomenclatura por **responsabilidade funcional** já usado nos demais componentes (`ServicoOCR`, `ValidadorMetragem`, `RepositorioEvidencias`).
 
 ---
 
@@ -88,8 +80,6 @@ O diagrama deve representar esta etapa específica da integração:
 Utilize nomes de classes, métodos e atributos em português e mantenha o diagrama coerente com o padrão de integração Top-Down com Stub, seguindo o mesmo estilo do exemplo de referência do laboratório (TransferenciaPixService com GatewayBacenStub).
 Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
 ```
-**Refinamentos aplicados após avaliação crítica**:
-- ...
 
 ---
 
@@ -117,9 +107,6 @@ Utilize nomes de classes, métodos e atributos em português e mantenha o diagra
 Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
 ```
 
-**Refinamentos aplicados após avaliação crítica**:
-- Nota (`note top of ValidadorMetragemDriver`) reduzida para um texto mais objetivo, evitando poluição visual no diagrama.
-
 ---
 
 ## 2.4 — Teste de Fumaça (Smoke Testing)
@@ -144,8 +131,6 @@ O diagrama deve representar:
 Utilize nomes em português e mantenha o diagrama simples, coerente com a proposta de um Smoke Test.
 Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
 ```
-**Refinamentos aplicados após avaliação crítica**: ...
-
 ---
 
 ## 2.5 — Teste de Regressão
@@ -170,7 +155,177 @@ Utilize nomes de classes e métodos em português e mantenha o diagrama simples 
 Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
 ```
 
-**Refinamentos aplicados após avaliação crítica**:
-- ...
+---
+
+## 3.1 — Critérios de Aceitação (User Acceptance Testing)
+
+### Prompt inicial
+
+**Ferramenta**: Gemini (Google)
+**Objetivo**: Gerar o diagrama de sequência representando o Supervisor de Campo validando o critério de aceitação da evidência fotográfica, sob a perspectiva do usuário de negócio.
+
+```text
+Atue como um engenheiro de software e engenheiro de testes sênior.
+Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
+Para o nível Teste de Validação, especificamente a abordagem Critérios de Aceitação (User Acceptance Testing), gere um diagrama de sequência em sintaxe PlantUML válido.
+O cenário é o seguinte:
+Um critério de aceitação definido junto ao negócio estabelece: "Dado que existe uma fotografia legível de um cabo contendo a metragem 1493 m, quando o Supervisor de Campo solicita a validação da evidência, então o sistema deve identificar 1493 m e apresentar a evidência como aprovada".
+O teste é executado pelo SupervisorDeCampo, representando o usuário de negócio que aprova a evidência para fins de medição, sem se preocupar com os detalhes técnicos internos do sistema.
+O diagrama deve representar:
+- Um ator SupervisorDeCampo, que solicita a validação e recebe o resultado;
+- O sistema representado de forma simplificada como um único participante SistemaValidacaoEvidencia (sem detalhar OCR, validador ou repositório internamente);
+- A interação: o Supervisor solicita a validação da evidência, o sistema processa a fotografia e retorna o resultado (metragem identificada e status de aprovação), e o Supervisor aprova a evidência;
+- Uma nota com o critério de aceitação no formato Dado/Quando/Então (Gherkin);
+- Uma segunda nota reforçando que este teste valida a experiência e a necessidade do usuário de negócio, não os detalhes técnicos internos do sistema.
+Não utilize o ator Tecnico neste diagrama — o foco é a perspectiva do Supervisor de Campo como responsável pela aceitação da evidência.
+Utilize nomes em português e mantenha o diagrama simples, coerente com a proposta de um teste de aceitação do usuário.
+Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
+```
 
 ---
+
+## 3.2 — Teste Alfa (Alpha Testing)
+
+### Prompt inicial
+
+**Ferramenta**: Gemini (Google)
+**Objetivo**: Gerar o diagrama de sequência representando a equipe interna de QA testando múltiplos cenários sobre o sistema, de forma exploratória, em ambiente controlado.
+
+```text
+Atue como um engenheiro de software e engenheiro de testes sênior.
+Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
+Para o nível Teste de Validação, especificamente a abordagem Teste Alfa (Alpha Testing), gere um diagrama de sequência em sintaxe PlantUML válido.
+O cenário é o seguinte:
+Antes do lançamento para os usuários finais, uma equipe interna de QA (representada pelo ator AnalistaQA) realiza testes exploratórios no sistema completo, em ambiente controlado, simulando o uso real do técnico em campo. Diferente do Teste de Aceitação (UAT), que valida um único critério formal já combinado com o negócio, o Teste Alfa explora múltiplos cenários de uso, incluindo casos de sucesso e de falha, para identificar defeitos antes da liberação externa.
+O diagrama deve representar:
+- Um ator AnalistaQA, representando a equipe interna que realiza o teste;
+- O sistema representado de forma simplificada como um participante único SistemaValidacaoEvidencia (sem detalhar OCR, validador ou repositório internamente, mantendo o foco no comportamento observável);
+- Ao menos dois cenários explorados pelo AnalistaQA usando blocos alt/else do PlantUML: um cenário de sucesso (fotografia legível, com metragem válida, sistema aprova a evidência) e um cenário de falha (fotografia ilegível ou sem metragem identificável, sistema reprova a evidência);
+- Uma nota explicando que o Teste Alfa é realizado por uma equipe interna, em ambiente controlado, de forma exploratória, antes da liberação para usuários externos.
+Utilize nomes em português e mantenha o diagrama coerente com a proposta de um teste alfa interno e exploratório.
+Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
+```
+
+---
+
+## 3.3 — Teste Beta (Beta Testing)
+
+### Prompt inicial
+
+**Ferramenta**: Claude (Anthropic)
+**Objetivo**: Gerar o diagrama de sequência representando um técnico real usando o sistema em campo e reportando feedback, sem cenários pré-definidos.
+
+```text
+Atue como um engenheiro de software e engenheiro de testes sênior.
+Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
+Para o nível Teste de Validação, especificamente a abordagem Teste Beta (Beta Testing), gere um diagrama de sequência em sintaxe PlantUML válido.
+O cenário é o seguinte:
+Após a conclusão do Teste Alfa (interno e controlado), o sistema é liberado para um grupo piloto de técnicos reais (ator TecnicoReal), que passam a utilizá-lo em condições reais de campo durante suas atividades normais de instalação de cabos, sem cenários pré-definidos por uma equipe de QA. Durante o uso real, o técnico pode encontrar um problema (ex: o sistema demora para responder, ou identifica incorretamente uma metragem em uma condição real de iluminação) e reporta esse problema por meio de um canal de feedback.
+O diagrama deve representar:
+- Um ator TecnicoReal, representando um usuário real do grupo piloto;
+- O sistema representado de forma simplificada como um participante único SistemaValidacaoEvidencia;
+- Um participante CanalFeedback, representando o mecanismo pelo qual o técnico reporta problemas ou sugestões percebidos durante o uso real;
+- O fluxo: o técnico usa o sistema normalmente em campo (envia uma fotografia real), o sistema retorna um resultado, e o técnico, ao perceber um problema ou ponto de melhoria durante esse uso real, reporta o feedback ao CanalFeedback;
+- Uma nota explicando que o Teste Beta ocorre em ambiente real, com usuários reais (não simulados), após a conclusão do Teste Alfa, e que o foco está na coleta de feedback genuíno de uso, não em cenários pré-roteirizados.
+Utilize nomes em português e mantenha o diagrama coerente com a proposta de um teste beta com usuários reais em ambiente de produção.
+Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
+```
+
+---
+
+## 4.1 — Teste de Recuperação (Recovery Testing)
+
+### Prompt inicial
+
+**Ferramenta**: Claude (Anthropic)
+**Objetivo**: Gerar o diagrama de sequência representando a falha temporária do `RepositorioEvidencias` e a recuperação do sistema por meio de reenvio, sem perda do resultado.
+
+```text
+Atue como um engenheiro de software e engenheiro de testes sênior.
+Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
+Para o nível Teste de Sistema, especificamente a abordagem Teste de Recuperação (Recovery Testing), gere um diagrama de sequência em sintaxe PlantUML válido.
+O cenário é o seguinte:
+Durante o processamento de uma evidência fotográfica, o ServicoProcessamentoEvidencia envia o resultado da validação ao RepositorioEvidencias para persistência. Nesse momento, o RepositorioEvidencias sofre uma queda abrupta (indisponibilidade do banco de dados) e não consegue confirmar o armazenamento. O sistema detecta essa falha, evita a perda do resultado (por exemplo, mantendo-o em uma fila de reenvio) e, quando o RepositorioEvidencias volta a ficar disponível, a persistência é concluída com sucesso automaticamente, sem exigir que o técnico refaça o processo.
+O diagrama deve representar:
+- O participante ServicoProcessamentoEvidencia, enviando o resultado da validação para persistência;
+- O participante RepositorioEvidencias, que inicialmente falha (queda abrupta) e depois se recupera;
+- Uma indicação visual da falha (ex: usando alt/else ou uma nota destacando o momento da queda);
+- O mecanismo de recuperação: nova tentativa de envio (retry) após o RepositorioEvidencias voltar a responder, concluindo a persistência com sucesso;
+- Uma nota explicando que o objetivo do Teste de Recuperação é verificar se o sistema volta a operar corretamente após uma falha, sem perda de dados.
+Utilize nomes em português e mantenha o diagrama coerente com a proposta de um teste de recuperação após falha de um componente.
+Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
+```
+
+---
+
+## 4.2 — Teste de Segurança (Security Testing)
+
+### Prompt inicial
+
+**Ferramenta**: Claude (Anthropic)
+**Objetivo**: Gerar o diagrama de sequência representando a tentativa de acesso não autorizado sendo bloqueada pelo `ServicoAutenticacao`, antes de alcançar os dados protegidos.
+
+```text
+Atue como um engenheiro de software e engenheiro de testes sênior.
+Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
+Para o nível Teste de Sistema, especificamente a abordagem Teste de Segurança (Security Testing), gere um diagrama de sequência em sintaxe PlantUML válido.
+O cenário é o seguinte:
+Um UsuarioNaoAutorizado tenta acessar as evidências fotográficas armazenadas no SistemaValidacaoEvidencia sem possuir credenciais válidas. A requisição passa primeiro pelo ServicoAutenticacao, responsável por verificar o token/credencial do usuário. Como o usuário não está autenticado (ou não possui permissão suficiente), o ServicoAutenticacao rejeita a requisição antes que ela alcance os dados protegidos, retornando um erro de acesso negado, sem expor nenhuma informação sensível do sistema.
+O diagrama deve representar:
+- Um ator UsuarioNaoAutorizado, tentando acessar o sistema;
+- O participante ServicoAutenticacao, responsável por validar credenciais;
+- O participante SistemaValidacaoEvidencia, protegido pela autenticação;
+- O fluxo: a tentativa de acesso, a verificação de credenciais falhando, e o retorno de um erro de acesso negado — sem que a requisição chegue a acessar dados do SistemaValidacaoEvidencia;
+- Uma nota explicando que o objetivo do Teste de Segurança é verificar se o sistema protege corretamente seus dados contra acessos não autorizados.
+Utilize nomes em português e mantenha o diagrama coerente com a proposta de um teste de segurança contra acesso indevido.
+Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
+```
+
+---
+
+## 4.3 — Teste de Estresse (Stress Testing)
+
+### Prompt inicial
+
+**Ferramenta**: Gemini (Google)
+**Objetivo**: Gerar o diagrama de sequência representando um pico de requisições realista (fechamento diário de medições/LPU) sobrecarregando o `SistemaValidacaoEvidencia`.
+
+```text
+Atue como um engenheiro de software e engenheiro de testes sênior.
+Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
+Para o nível Teste de Sistema, especificamente a abordagem Teste de Estresse (Stress Testing), gere um diagrama de sequência em sintaxe PlantUML válido.
+O cenário é o seguinte:
+Durante o fechamento diário das atividades de medição/LPU, diversos técnicos enviam várias fotografias de evidências em um curto período de tempo (por exemplo, 50 técnicos enviando cerca de 10 fotografias cada, totalizando um pico de aproximadamente 500 requisições em um curto intervalo). Esse volume fica muito acima da carga normal esperada pelo SistemaValidacaoEvidencia, gerando um pico de processamento. O objetivo do teste é observar como o sistema se comporta sob essa sobrecarga: se degrada de forma controlada (enfileirando requisições e respondendo com maior latência) ou se apresenta falhas graves (indisponibilidade total).
+O diagrama deve representar:
+- Um participante GeradorDeCarga, representando a ferramenta de teste que simula esse pico de requisições (utilize um bloco loop do PlantUML para representar o envio de múltiplas requisições em um curto intervalo);
+- O participante SistemaValidacaoEvidencia, recebendo esse volume de requisições;
+- A resposta do sistema sob a sobrecarga: uma nota ou mensagem indicando enfileiramento de requisições e aumento de latência, representando degradação controlada, em vez de falha total;
+- Uma nota explicando que o pico simulado representa o volume acumulado de vários técnicos enviando evidências durante o fechamento diário, e não um número irreal de usuários conectados simultaneamente;
+- Outra nota explicando que o objetivo do Teste de Estresse é verificar os limites de capacidade do sistema e como ele se comporta além da carga esperada.
+Utilize nomes em português e mantenha o diagrama coerente com a proposta de um teste de estresse baseado em um pico realista de requisições.
+Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
+```
+
+---
+
+## 4.4 — Teste de Desempenho (Performance Testing)
+
+### Prompt inicial
+
+**Ferramenta**: Gemini (Google)
+**Objetivo**: Gerar o diagrama de sequência representando a medição do tempo de resposta do sistema sob condições normais de uso, comparando com um requisito de desempenho definido.
+
+```text
+Atue como um engenheiro de software e engenheiro de testes sênior.
+Estou desenvolvendo um estudo de caso sobre estratégias e níveis de teste para um Sistema Inteligente de Validação de Evidências Fotográficas para serviços de telecomunicações.
+Para o nível Teste de Sistema, especificamente a abordagem Teste de Desempenho (Performance Testing), gere um diagrama de sequência em sintaxe PlantUML válido.
+O cenário é o seguinte:
+Sob condições normais de uso (carga esperada, não sobrecarregada), um Tecnico envia uma fotografia ao SistemaValidacaoEvidencia, e o sistema deve processá-la e retornar o resultado dentro de um requisito de desempenho previamente definido: no máximo 3 segundos, do envio da fotografia até a exibição do resultado. O teste mede o tempo de resposta do sistema e verifica se ele atende a esse requisito.
+O diagrama deve representar:
+- Um ator Tecnico, enviando uma fotografia sob condições normais de uso (uma única requisição, sem sobrecarga);
+- O participante SistemaValidacaoEvidencia, processando a fotografia e retornando o resultado;
+- Uma indicação de medição de tempo (ex: notas indicando o início e o fim da medição, e o tempo total decorrido, comparado ao limite de 3 segundos);
+- Uma nota explicando que o objetivo do Teste de Desempenho é verificar se o sistema atende aos requisitos de tempo de resposta sob condições normais de uso, diferenciando-se do Teste de Estresse (4.3), que avalia o comportamento sob carga excessiva e propositalmente além do normal.
+Utilize nomes em português e mantenha o diagrama coerente com a proposta de um teste de desempenho medindo tempo de resposta sob carga normal.
+Formate a resposta somente como um bloco de código PlantUML, sem explicações adicionais.
+```

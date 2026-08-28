@@ -1,0 +1,39 @@
+@startuml 4.1-teste-recuperacao-recovery-testing
+skinparam monochrome true
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+
+actor Tecnico
+participant ServicoProcessamentoEvidencia
+participant RepositorioEvidencias
+
+note over Tecnico, RepositorioEvidencias
+  Teste de Recuperação: verifica se o sistema
+  consegue se recuperar de uma falha e concluir
+  a operação sem perder o resultado.
+end note
+
+Tecnico -> ServicoProcessamentoEvidencia : enviarEvidencia("foto_1493m.jpg")
+activate ServicoProcessamentoEvidencia
+
+ServicoProcessamentoEvidencia -> RepositorioEvidencias : salvar(resultado)
+activate RepositorioEvidencias
+
+RepositorioEvidencias --> ServicoProcessamentoEvidencia : erro("repositório indisponível")
+deactivate RepositorioEvidencias
+
+note right of ServicoProcessamentoEvidencia
+  Resultado mantido em fila de reenvio
+  para evitar perda da evidência.
+end note
+
+ServicoProcessamentoEvidencia -> RepositorioEvidencias : tentarNovamente(resultado)
+activate RepositorioEvidencias
+
+RepositorioEvidencias --> ServicoProcessamentoEvidencia : armazenamentoConfirmado
+deactivate RepositorioEvidencias
+
+ServicoProcessamentoEvidencia --> Tecnico : evidência processada e armazenada
+deactivate ServicoProcessamentoEvidencia
+
+@enduml

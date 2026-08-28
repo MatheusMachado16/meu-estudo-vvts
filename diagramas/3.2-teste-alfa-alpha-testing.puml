@@ -1,0 +1,27 @@
+@startuml 3.2-teste-alfa-alpha-testing
+skinparam monochrome true
+
+actor EquipeQA
+participant SistemaValidacaoEvidencia
+
+note over EquipeQA, SistemaValidacaoEvidencia
+  Teste Alfa: realizado por equipe interna de QA,
+  em ambiente controlado, de forma exploratória,
+  antes da liberação para usuários externos.
+end note
+
+alt Cenário 1 - Foto legível ("1493 m")
+    EquipeQA -> SistemaValidacaoEvidencia : executarCenario("foto_legivel_1493m.jpg")
+    SistemaValidacaoEvidencia --> EquipeQA : metragem identificada ("1493 m", Aprovada)
+else Cenário 2 - Foto borrada
+    EquipeQA -> SistemaValidacaoEvidencia : executarCenario("foto_borrada.jpg")
+    SistemaValidacaoEvidencia --> EquipeQA : dificuldade de identificação
+else Cenário 3 - Sem metragem
+    EquipeQA -> SistemaValidacaoEvidencia : executarCenario("foto_sem_metragem.jpg")
+    SistemaValidacaoEvidencia --> EquipeQA : metragem não identificada
+else Cenário 4 - Formato diferente ("850m")
+    EquipeQA -> SistemaValidacaoEvidencia : executarCenario("foto_850m.jpg")
+    SistemaValidacaoEvidencia --> EquipeQA : metragem identificada ("850 m", Aprovada)
+end
+
+@enduml

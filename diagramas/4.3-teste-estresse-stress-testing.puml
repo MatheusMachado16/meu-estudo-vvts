@@ -1,0 +1,35 @@
+@startuml 4.3-teste-estresse-stress-testing
+skinparam monochrome true
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+
+actor GeradorDeCarga
+participant SistemaValidacaoEvidencia
+
+note over GeradorDeCarga, SistemaValidacaoEvidencia
+  Objetivo do Teste de Estresse:
+  Verificar os limites de capacidade do sistema e observar como
+  ele se comporta sob uma carga muito além do volume normal esperado.
+  O foco é avaliar se ocorre degradação controlada ou falha total.
+end note
+
+note over GeradorDeCarga
+  O pico simulado representa o volume acumulado de vários técnicos
+  (ex: 50 técnicos enviando aproximadamente 10 fotos cada,
+  totalizando aproximadamente 500 requisições) durante o
+  fechamento diário.
+end note
+
+loop 500 requisições em curto intervalo
+    GeradorDeCarga -> SistemaValidacaoEvidencia : solicitarValidacao("foto_evidencia.jpg")
+    SistemaValidacaoEvidencia --> GeradorDeCarga : retornarResultado()
+end
+
+note right of SistemaValidacaoEvidencia
+  Comportamento esperado:
+  requisições podem ser enfileiradas,
+  com aumento de latência,
+  caracterizando degradação controlada.
+end note
+
+@enduml

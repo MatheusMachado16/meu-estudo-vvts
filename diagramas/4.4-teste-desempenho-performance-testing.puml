@@ -1,0 +1,34 @@
+@startuml 4.4-teste-desempenho-performance-testing
+skinparam monochrome true
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+
+actor Tecnico
+participant SistemaValidacaoEvidencia
+
+note over Tecnico, SistemaValidacaoEvidencia
+  Teste de Desempenho:
+  verificar o tempo de resposta do sistema
+  sob condições normais de uso.
+  Requisito: no máximo 3 segundos.
+end note
+
+Tecnico -> SistemaValidacaoEvidencia : enviarFoto("foto_evidencia.jpg")
+
+note right of SistemaValidacaoEvidencia
+  Início da medição de tempo
+end note
+
+activate SistemaValidacaoEvidencia
+SistemaValidacaoEvidencia -> SistemaValidacaoEvidencia : processarEvidencia()
+SistemaValidacaoEvidencia --> Tecnico : exibirResultado()
+
+note right of Tecnico
+  Fim da medição.
+  Tempo de resposta <= 3 segundos: APROVADO
+  Tempo de resposta > 3 segundos: REPROVADO
+end note
+
+deactivate SistemaValidacaoEvidencia
+
+@enduml

@@ -1,0 +1,31 @@
+@startuml visao-arquitetural-sistema
+
+skinparam componentStyle uml2
+skinparam monochrome true
+left to right direction
+
+component "InterfaceTecnico" as IT
+component "ServicoProcessamentoEvidencia" as SPE
+component "ServicoOCR" as OCR
+component "ValidadorMetragem" as VM
+component "ServicoAutenticacao" as SA
+interface "IRepositorioEvidencias" as IRE
+component "RepositorioEvidencias" as RE
+
+note top of SPE
+  Orquestra o fluxo completo:
+  recebe a evidência, aciona o OCR,
+  realiza a validação e solicita a persistência.
+end note
+
+IT --> SPE : envia foto
+SPE --> OCR : solicita extração
+OCR --> SPE : retorna texto
+SPE --> VM : solicita validação
+VM --> SPE : retorna resultado
+SPE --> IRE : solicita persistência
+IRE --> RE : implementa
+
+SA ..> IT : protege o acesso
+
+@enduml

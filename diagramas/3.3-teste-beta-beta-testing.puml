@@ -1,0 +1,29 @@
+@startuml 3.3-teste-beta-beta-testing
+skinparam monochrome true
+skinparam ParticipantPadding 20
+skinparam BoxPadding 10
+
+actor TecnicoCampo
+participant SistemaValidacaoEvidencia
+participant CanalFeedback
+
+note over TecnicoCampo, CanalFeedback
+  Teste Beta: realizado por usuários reais,
+  em condições reais de trabalho e em escala limitada,
+  antes da liberação definitiva do sistema.
+end note
+
+TecnicoCampo -> SistemaValidacaoEvidencia : enviarFoto("foto_campo.jpg")
+activate SistemaValidacaoEvidencia
+
+SistemaValidacaoEvidencia --> TecnicoCampo : exibirResultado()
+
+deactivate SistemaValidacaoEvidencia
+
+TecnicoCampo -> CanalFeedback : reportarFeedback("problema ou sugestão")
+activate CanalFeedback
+
+CanalFeedback --> TecnicoCampo : feedbackRegistrado()
+deactivate CanalFeedback
+
+@enduml
