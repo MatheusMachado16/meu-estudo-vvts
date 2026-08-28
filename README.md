@@ -255,8 +255,6 @@ Após utilizar o sistema, o técnico pode identificar problemas, dificuldades ou
 
 O principal objetivo desse teste é identificar problemas que surgem durante a utilização real do sistema, além de coletar percepções e sugestões dos usuários. Por exemplo, os técnicos podem relatar dificuldades para enviar fotografias em locais com conexão instável, problemas na identificação da metragem em determinadas condições de campo ou sugestões para tornar a utilização do sistema mais prática.
 
-Assim, o Teste Beta permite avaliar o sistema fora do ambiente controlado do Alfa, utilizando a experiência de usuários reais para encontrar problemas e oportunidades de melhoria antes do lançamento definitivo.
-
 ---
 
 ## 4. Teste de Sistema (System Testing)
@@ -277,8 +275,6 @@ Após a recuperação do `RepositorioEvidencias`, o serviço realiza uma nova te
 
 O principal objetivo desse teste é identificar falhas relacionadas à recuperação após indisponibilidade de componentes, verificando principalmente se os dados são preservados durante a falha e se a operação consegue ser concluída posteriormente. Um problema seria, por exemplo, o sistema perder o resultado da validação após a queda do repositório ou não realizar corretamente a nova tentativa de persistência.
 
-Dessa forma, o diagrama demonstra não apenas a ocorrência da falha, mas principalmente o comportamento esperado do sistema antes, durante e após a recuperação, que é o aspecto central do Recovery Testing.
-
 ### 4.2 Teste de Segurança (Security Testing)
 
 #### Diagrama de Sequência UML
@@ -294,8 +290,6 @@ No cenário representado, o `UsuarioNaoAutorizado` tenta acessar as evidências 
 O diagrama apresenta dois possíveis motivos para a rejeição: credencial inválida ou ausência de permissão. Em ambos os casos, o `ServicoAutenticacao` retorna uma mensagem de `acessoNegado()` ao usuário. O `SistemaValidacaoEvidencia` não recebe a requisição e, consequentemente, nenhuma evidência ou informação protegida é disponibilizada.
 
 O principal objetivo desse teste é identificar falhas de controle de acesso e autenticação que poderiam permitir que usuários não autorizados consultassem evidências fotográficas ou outras informações protegidas. Um problema grave seria, por exemplo, o sistema aceitar uma credencial inválida ou permitir que um usuário sem permissão alcançasse os dados das evidências.
-
-Dessa forma, o teste verifica se a barreira de segurança funciona corretamente antes do acesso aos dados protegidos, garantindo que uma tentativa de acesso indevido seja bloqueada e que nenhuma informação sensível seja exposta.
 
 ### 4.3 Teste de Estresse (Stress Testing)
 
