@@ -177,7 +177,7 @@ Nesta abordagem, o objetivo é verificar rapidamente, logo após um novo deploy,
 
 O cenário representa um `Tecnico` enviando, por meio da `InterfaceTecnico`, uma única fotografia de teste contendo a metragem válida `"1493 m"`. A interface encaminha a fotografia ao `ServicoOCR`, que extrai o texto e o retorna. Em seguida, o texto é enviado ao `ValidadorMetragem`, que retorna o resultado da validação. Por fim, o resultado é encaminhado ao `RepositorioEvidencias`, que confirma o armazenamento, permitindo que a interface exiba ao técnico a mensagem `"Foto aprovada"`.
 
-O diagrama representa apenas o caminho principal (happy path), sem cenários de erro ou casos de borda. Essa escolha é proposital, pois o Smoke Test busca apenas confirmar que as principais etapas — captura, extração, validação e persistência — estão funcionando após o deploy.
+O diagrama representa apenas o caminho principal (happy path), sem cenários de erro ou casos de borda. Essa escolha é proposital, pois o Smoke Test busca apenas confirmar que as principais etapas captura, extração, validação e persistência — estão funcionando após o deploy.
 
 O principal objetivo é identificar rapidamente falhas graves no fluxo principal, como serviços indisponíveis, problemas de configuração ou quebras de comunicação entre módulos. Caso o teste falhe, o sistema pode ser considerado instável e os testes mais detalhados não devem prosseguir até que o problema seja corrigido.
 
